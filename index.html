@@ -1,0 +1,79 @@
+<script>
+      function controlarCampos() {
+        var motivo = document.getElementById("motivo").value;
+        var seccionDetalle = document.getElementById("seccionDetalle");
+        var seccionFormato = document.getElementById("seccionFormato");
+        var seccionCalendario = document.getElementById("seccionCalendario");
+
+        if (motivo === "📅 DÍAS Y HORARIOS DISPONIBLES" || motivo === "📅 QUE DÍAS Y HORARIOS ESTAN FALTANDO CUBRIR") {
+          seccionCalendario.classList.remove("oculto");
+          seccionDetalle.classList.add("oculto");
+          seccionFormato.classList.add("oculto");
+        } else {
+          seccionCalendario.classList.add("oculto");
+          seccionDetalle.classList.remove("oculto");
+          seccionFormato.classList.remove("oculto");
+        }
+      }
+
+      function cambiarFormato() {
+        var formato = document.querySelector('input[name="formato"]:checked').value;
+        var detalle = document.getElementById("detalle");
+        
+        if (formato === "audio") {
+          detalle.value = "*(Voy a enviar un audio aclarando este punto, por favor escúchenlo)*";
+          detalle.disabled = true; 
+        } else {
+          detalle.value = "";
+          detalle.disabled = false;
+        }
+      }
+
+      function enviar() {
+        var nombre = document.getElementById("nombre").value;
+        var motivo = document.getElementById("motivo").value;
+        var detalleRaw = document.getElementById("detalle").value;
+        var fecha = document.getElementById("fecha").value;
+        var horaInicio = document.getElementById("horaInicio").value;
+        var horaFin = document.getElementById("horaFin").value;
+        var horaActual = new Date().toLocaleTimeString("es-AR", {hour: '2-digit', minute: '2-digit'});
+
+        var fechaFormateada = "";
+        if (fecha) {
+          var dateParts = fecha.split('-');
+          var fechaReal = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+          var opciones = { weekday: 'long', day: '2-digit', month: '2-digit' };
+          fechaFormateada = fechaReal.toLocaleDateString("es-AR", opciones);
+        }
+
+        var texto = "🕒 *" + horaActual + "* — *" + nombre + "*\n\n📢 *Motivo:* " + motivo;
+        
+        if (motivo !== "📅 DÍAS Y HORARIOS DISPONIBLES" && motivo !== "📅 QUE DÍAS Y HORARIOS ESTAN FALTANDO CUBRIR") {
+          if (detalleRaw) {
+            if (motivo.includes("INSUMOS") || detalleRaw.includes(",")) {
+              texto += "\n📋 *Lista de ítems:*";
+              var elementos = detalleRaw.split(/[,\n]+/);
+              for (var i = 0; i < elementos.length; i++) {
+                var item = elementos[i].trim();
+                if (item !== "") {
+                  texto += "\n🔹 " + item;
+                }
+              }
+            } else {
+              texto += "\n📝 *Detalle:* " + detalleRaw;
+            }
+          }
+        } else {
+          if (fechaFormateada) texto += "\n📅 *Día:* " + fechaFormateada;
+          if (horaInicio && horaFin) texto += "\n⏰ *Horario:* de " + horaInicio + " a " + horaFin + " hs";
+        }
+
+        // 🛠️ LA SOLUCIÓN: Usamos la API universal para inyectar el texto
+        // Esto abre WhatsApp y te deja el texto ya pegado abajo. 
+        // Vos o tus hermanos solo tocan el grupo de la Vieja (que les va a aparecer arriba de todo) y se envía al instante.
+        var enlace = "https://api.whatsapp.com/send?text=" + encodeURIComponent(texto);
+        window.open(enlace, "_blank");
+      }
+
+      controlarCampos();
+    </script>
