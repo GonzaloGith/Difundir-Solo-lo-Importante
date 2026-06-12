@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <!-- 📱 ESTA LÍNEA CORRIGE EL TAMAÑO EN CELULARES -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📢 DIFUSIÓN CUIDADOS VIEJA</title>
     <style>
       body {
@@ -12,7 +14,7 @@
         background-attachment: fixed;
         text-align: center;
         margin: 0;
-        padding: 40px 10px;
+        padding: 15px; /* Menos margen para que aproveche el alto del celular */
         min-height: 100vh;
         box-sizing: border-box;
         display: flex;
@@ -21,21 +23,22 @@
       }
       h2 {
         color: #0056b3;
-        font-size: 26px;
+        font-size: 24px; /* Letras un poco más grandes y claras */
         margin-top: 0;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
       }
+      /* Tarjeta adaptada para ocupar casi todo el ancho del teléfono */
       .form-container {
         background-color: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(5px);
         border-radius: 16px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-        display: inline-block;
-        padding: 30px 35px;
+        display: block;
+        padding: 25px 20px;
         text-align: left;
         width: 100%;
-        max-width: 360px;
+        max-width: 450px; /* Crece mejor en pantallas medianas */
         box-sizing: border-box;
       }
       .aviso-importante {
@@ -44,7 +47,7 @@
         border-left: 5px solid #ffc107;
         padding: 12px;
         border-radius: 6px;
-        font-size: 13.5px;
+        font-size: 14px;
         font-weight: bold;
         margin-bottom: 20px;
         line-height: 1.4;
@@ -53,41 +56,46 @@
         font-weight: bold;
         color: #333;
         display: block;
-        margin-top: 15px;
-        font-size: 14px;
+        margin-top: 18px;
+        font-size: 15px; /* Más cómodo de leer */
       }
       select, textarea, input {
         width: 100%;
-        margin-top: 5px;
-        padding: 11px;
+        margin-top: 6px;
+        padding: 13px; /* Más espacioso para tocar fácil con el dedo */
         border-radius: 8px;
         border: 1px solid #bbb;
-        font-size: 15px;
+        font-size: 16px; /* Evita que iOS y Android hagan zoom raro al escribir */
         box-sizing: border-box;
       }
       .radio-group {
-        margin-top: 8px;
+        margin-top: 10px;
         display: flex;
-        gap: 15px;
+        flex-direction: column; /* Apilados en celular para que no se amontonen */
+        gap: 10px;
       }
       .radio-group label {
-        display: inline;
+        display: flex;
+        align-items: center;
         font-weight: normal;
         margin-top: 0;
         cursor: pointer;
+        font-size: 16px;
       }
       .radio-group input {
-        width: auto;
-        margin-right: 5px;
+        width: 22px; /* Botones de opción más grandes para el dedo */
+        height: 22px;
+        margin-right: 10px;
+        margin-top: 0;
       }
       button {
         background-color: #25D366;
         color: white;
         border: none;
         width: 100%;
-        padding: 15px;
+        padding: 16px; /* Botón bien gordo y fácil de apretar */
         border-radius: 8px;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: bold;
         cursor: pointer;
         margin-top: 25px;
@@ -120,6 +128,9 @@
         <option value="YECO">YECO</option>
         <option value="LAURA">LAURA</option>
         <option value="Dra/Doc">Dra/Dr</option>
+        <option value="COQUITO">COQUITO</option>
+        <option value="ELI">ELI</option>
+        <option value="GRINGO">GRINGO</option>
       </select>
 
       <label for="motivo">📋 Motivo del mensaje:</label>
@@ -164,7 +175,7 @@
       <button onclick="enviar()">📨 Enviar Mensaje</button>
     </div>
 
-    <script {fileName="index.html"}>
+    <script>
       function controlarCampos() {
         var motivo = document.getElementById("motivo").value;
         var seccionDetalle = document.getElementById("seccionDetalle");
