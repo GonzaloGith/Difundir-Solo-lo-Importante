@@ -1,4 +1,185 @@
-<script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>📢 DIFUSIÓN CUIDADOS VIEJA</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        /* Fondo lindo y cálido con capa para mejorar contraste */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1200&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        text-align: center;
+        margin: 0;
+        padding: 40px 10px;
+        min-height: 100vh;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      h2 {
+        color: #0056b3;
+        font-size: 26px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      }
+      /* Tarjeta moderna flotante */
+      .form-container {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        display: inline-block;
+        padding: 30px 35px;
+        text-align: left;
+        width: 100%;
+        max-width: 360px;
+        box-sizing: border-box;
+      }
+      /* Cartel amarillo con las reglas del grupo */
+      .aviso-importante {
+        background-color: #fff3cd;
+        color: #856404;
+        border-left: 5px solid #ffc107;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 13.5px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        line-height: 1.4;
+      }
+      label {
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+      select, textarea, input {
+        width: 100%;
+        margin-top: 5px;
+        padding: 11px;
+        border-radius: 8px;
+        border: 1px solid #bbb;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: border 0.3s;
+      }
+      select:focus, textarea:focus, input:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+      .radio-group {
+        margin-top: 8px;
+        display: flex;
+        gap: 15px;
+      }
+      .radio-group label {
+        display: inline;
+        font-weight: normal;
+        margin-top: 0;
+        cursor: pointer;
+      }
+      .radio-group input {
+        width: auto;
+        margin-right: 5px;
+      }
+      /* Botón verde llamativo estilo WhatsApp */
+      button {
+        background-color: #25D366;
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 25px;
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        transition: all 0.2s;
+      }
+      button:hover {
+        background-color: #128C7E;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+      }
+      .oculto {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="form-container">
+      <h2>📢 DIFUSIÓN CUIDADOS VIEJA</h2>
+      
+      <div class="aviso-importante">
+        ⚠️ ATENCIÓN:<br>
+        Usemos esto SOLO para lo importante. Anotá primero la lista abajo (separada por comas) para mandar todo junto. Y si ven que necesitamos agregar algo más al formulario, ¡avísenme!
+      </div>
+
+      <label for="nombre">👤 Nombre:</label>
+      <select id="nombre">
+        <option value="Cheo">Cheo</option>
+        <option value="Laura">Laura</option>
+        <option value="Monita">Monita</option>
+        <option value="Eli">Eli</option>
+        <option value="Gordita">Gordita</option>
+        <option value="Yeco">Yeco</option>
+        <option value="Piti">Piti</option>
+        <option value="Coco">Coco</option>
+        <option value="Gringo">Gringo</option>
+        <option value="Dra/Doc">Dra/Dr</option>
+      </select>
+
+      <label for="motivo">📋 Motivo del mensaje:</label>
+      <select id="motivo" onchange="controlarCampos()">
+        <option value="⚠️ URGENCIA">⚠️ URGENCIA</option>
+        <option value="🩺 PARTE MÉDICO">🩺 PARTE MÉDICO</option>
+        <option value="👵 REPORTE ESTADO DE LA VIEJA">👵 REPORTE ESTADO DE LA VIEJA</option>
+        <option value="📅 DÍAS Y HORARIOS DISPONIBLES">📅 DÍAS Y HORARIOS DISPONIBLES PARA CUIDARLA</option>
+        <option value="📅 QUE DÍAS Y HORARIOS ESTAN FALTANDO CUBRIR">📅 QUE DÍAS Y HORARIOS ESTAN FALTANDO CUBRIR</option>
+        <option value="🧴 INSUMOS NECESARIOS">🧴 QUE INSUMOS SE NECESITAN EN EL DÍA</option>
+        <option value="🧴 NECESITO QUE ME CAMBIEN EL /DIA/HORARIO">🧴 NECESITO QUE ME CAMBIEN EL /DIA/HORARIO</option>
+        <option value="🧴 ME TENGO QUE RETIRAR ANTES">🧴 ME TENGO QUE RETIRAR ANTES QUIEN ME PUEDE REEMPLAZAR</option>
+        <option value="🧴 EL DÍA .....A LAS...NO HAY NADIE PARA QUEDARSE">🧴 EL DÍA .....A LAS...NO HAY NADIE PARA QUEDARSE</option>
+        <option value="👵 LA MAMI ME PIDIO SI">👵 LA MAMI ME PIDIO SI </option>
+        <option value="👵 NECESITAMOS COMPRAR">👵 NECESITAMOS COMPRAR </option>         
+      </select>
+
+      <div id="seccionFormato">
+        <label>🎙️ ¿Cómo vas a mandar el detalle?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="formato" value="texto" checked onchange="cambiarFormato()"> Escribir texto</label>
+          <label><input type="radio" name="formato" value="audio" onchange="cambiarFormato()"> Mandar Audio 🎙️</label>
+        </div>
+      </div>
+
+      <div id="seccionDetalle">
+        <label for="detalle">📝 Detalle / Lista:</label>
+        <textarea id="detalle" placeholder="Escribí el detalle o lista (separada por comas)..." rows="4"></textarea>
+      </div>
+
+      <div id="seccionCalendario" class="oculto">
+        <label for="fecha">📅 Día involucrado:</label>
+        <input type="date" id="fecha">
+
+        <label for="horaInicio">🕐 Hora de inicio:</label>
+        <input type="time" id="horaInicio">
+
+        <label for="horaFin">🕒 Hora de fin:</label>
+        <input type="time" id="horaFin">
+      </div>
+
+      <button onclick="enviar()">📨 Enviar Mensaje</button>
+    </div>
+
+    <script>
       function controlarCampos() {
         var motivo = document.getElementById("motivo").value;
         var seccionDetalle = document.getElementById("seccionDetalle");
@@ -68,12 +249,11 @@
           if (horaInicio && horaFin) texto += "\n⏰ *Horario:* de " + horaInicio + " a " + horaFin + " hs";
         }
 
-        // 🛠️ LA SOLUCIÓN: Usamos la API universal para inyectar el texto
-        // Esto abre WhatsApp y te deja el texto ya pegado abajo. 
-        // Vos o tus hermanos solo tocan el grupo de la Vieja (que les va a aparecer arriba de todo) y se envía al instante.
         var enlace = "https://api.whatsapp.com/send?text=" + encodeURIComponent(texto);
         window.open(enlace, "_blank");
       }
 
       controlarCampos();
     </script>
+  </body>
+</html>
